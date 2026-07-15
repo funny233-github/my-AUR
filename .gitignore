@@ -14,5 +14,6 @@ src/
 *.tgz
 *.tar.gz
 
-# Misc
+# Partial downloads / misc
+*.part
 *~
