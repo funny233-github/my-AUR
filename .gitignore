@@ -9,8 +9,10 @@ src/
 *.zst
 .PKGINFO
 
-# cubioms-viewer specific (git clone output)
-cubiomes-viewer/
+# Downloaded source archives
+*.deb
+*.tgz
+*.tar.gz
 
 # Misc
 *~

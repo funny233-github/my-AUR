@@ -19,9 +19,13 @@ When asked to update an AUR package:
 
 | Directory | Package | AGENTS.md |
 |---|---|---|
-| `cubioms-viewer/` | cubiomes-viewer | [cubioms-viewer/AGENTS.md](cubioms-viewer/AGENTS.md) |
-| `ddnet-binary/` | ddnet-binary | [ddnet-binary/AGENTS.md](ddnet-binary/AGENTS.md) |
-| `ddnet-infclass-client/` | ddnet-infclass-client | [ddnet-infclass-client/AGENTS.md](ddnet-infclass-client/AGENTS.md) |
+| `cubiomes-viewer-self/` | cubiomes-viewer-self | [cubiomes-viewer-self/AGENTS.md](cubiomes-viewer-self/AGENTS.md) |
+| `ddnet-binary-self/` | ddnet-binary-self | [ddnet-binary-self/AGENTS.md](ddnet-binary-self/AGENTS.md) |
+| `ddnet-infclass-client-self/` | ddnet-infclass-client-self | [ddnet-infclass-client-self/AGENTS.md](ddnet-infclass-client-self/AGENTS.md) |
+| `linuxqq-self/` | linuxqq-self | [linuxqq-self/AGENTS.md](linuxqq-self/AGENTS.md) |
+| `mindustry-self/` | mindustry-self | [mindustry-self/AGENTS.md](mindustry-self/AGENTS.md) |
+| `watt-toolkit-bin-self/` | watt-toolkit-bin-self | [watt-toolkit-bin-self/AGENTS.md](watt-toolkit-bin-self/AGENTS.md) |
+| `wechat-bin-self/` | wechat-bin-self | [wechat-bin-self/AGENTS.md](wechat-bin-self/AGENTS.md) |
 
 ## Important Notes
 

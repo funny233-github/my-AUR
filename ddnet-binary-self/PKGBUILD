@@ -1,4 +1,4 @@
-pkgname=ddnet-binary
+pkgname=ddnet-binary-self
 pkgver=19.9
 pkgrel=1
 pkgdesc="DDNet game from official website"

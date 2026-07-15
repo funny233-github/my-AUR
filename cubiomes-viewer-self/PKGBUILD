@@ -1,5 +1,5 @@
 # Maintainer: Your Name <your@email.com>
-pkgname=cubiomes-viewer
+pkgname=cubiomes-viewer-self
 pkgver=4.1.2
 pkgrel=1
 pkgdesc="Efficient graphical seed finder and map viewer for Minecraft"
