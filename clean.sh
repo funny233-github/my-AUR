@@ -8,7 +8,7 @@ echo "  Cleaning all AUR package build artifacts"
 echo "============================================"
 echo ""
 
-for dir in cubioms-viewer ddnet-binary ddnet-infclass-client; do
+for dir in */; do
     if [ -f "$dir/clean.sh" ]; then
         echo ""
         (cd "$dir" && bash clean.sh)
