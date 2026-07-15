@@ -17,3 +17,4 @@ src/
 # Partial downloads / misc
 *.part
 *~
+logs/

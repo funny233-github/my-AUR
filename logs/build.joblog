@@ -1,8 +1,0 @@
-Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
-1	:	1784100311.410	     4.130	0	0	1	0	/tmp/tmp.dbizR150iD cubiomes-viewer-self/ logs/1.log 600 2
-3	:	1784100311.416	     4.134	0	0	1	0	/tmp/tmp.dbizR150iD ddnet-infclass-client-self/ logs/3.log 600 2
-2	:	1784100311.413	     4.136	0	0	1	0	/tmp/tmp.dbizR150iD ddnet-binary-self/ logs/2.log 600 2
-4	:	1784100311.418	     4.133	0	0	1	0	/tmp/tmp.dbizR150iD linuxqq-self/ logs/4.log 600 2
-5	:	1784100311.421	     4.130	0	0	1	0	/tmp/tmp.dbizR150iD mindustry-self/ logs/5.log 600 2
-6	:	1784100311.423	     4.133	0	0	1	0	/tmp/tmp.dbizR150iD watt-toolkit-bin-self/ logs/6.log 600 2
-7	:	1784100311.426	     4.131	0	0	1	0	/tmp/tmp.dbizR150iD wechat-bin-self/ logs/7.log 600 2
