@@ -2,8 +2,8 @@
 Name=Cubiomes Viewer
 GenericName=Minecraft Seed Finder
 Comment=Efficient graphical seed finder and map viewer for Minecraft
-Exec=cubiomes-viewer-self
-Icon=cubiomes-viewer-self
+Exec=cubiomes-viewer
+Icon=cubiomes-viewer
 Terminal=false
 Type=Application
 Categories=Game;

@@ -28,8 +28,8 @@ build() {
 package() {
   cd "$srcdir/$_upstream"
 
-  # Install executable (renamed to pkgname)
-  install -Dm755 "$_upstream" "$pkgdir/usr/bin/$pkgname"
+  # Install executable (upstream name, not *-self)
+  install -Dm755 "$_upstream" "$pkgdir/usr/bin/$_upstream"
 
   # Install license
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"

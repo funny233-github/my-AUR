@@ -29,11 +29,11 @@ package() {
 	bsdtar -xf data.tar.xz -C "${pkgdir}/"
 
 	echo "  -> Installing..."
-	# Launcher (renamed to pkgname)
-	install -Dm755 "linuxqq.sh" "${pkgdir}/usr/bin/${pkgname}"
+	# Launcher (upstream name, not *-self)
+	install -Dm755 "linuxqq.sh" "${pkgdir}/usr/bin/linuxqq"
 
-	# Launcher Fix - point to our renamed binary
-	sed -i '3s!/opt/QQ/qq!linuxqq-self!' "${pkgdir}/usr/share/applications/qq.desktop"
+	# Launcher Fix - point to our binary
+	sed -i '3s!/opt/QQ/qq!linuxqq!' "${pkgdir}/usr/share/applications/qq.desktop"
 
 	# Icon Fix
 	sed -i '6s!/usr/share/icons/hicolor/512x512/apps/qq.png!qq!' "${pkgdir}/usr/share/applications/qq.desktop"
