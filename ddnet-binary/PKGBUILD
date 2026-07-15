@@ -1,0 +1,45 @@
+pkgname=ddnet-binary
+pkgver=19.9
+pkgrel=1
+pkgdesc="DDNet game from official website"
+arch=('x86_64')
+url="https://ddnet.org"
+license=('CC-BY-SA-3.0' 'Zlib' 'OFL-1.1' 'Bitstream-Vera' 'LicenseRef-Arev')
+source=("https://ddnet.org/downloads/DDNet-$pkgver-linux_x86_64.tar.xz" "DDNet.desktop")
+sha256sums=('0dbee3217a231e787a555493203f0953d3f6783551743dd97e6e81936f4a280c' 'SKIP')
+
+build() {
+  cd "$srcdir/DDNet-$pkgver-linux_x86_64"
+}
+
+package() {
+  install -vDm644 "DDNet.desktop" "$pkgdir/usr/share/applications/DDNet.desktop"
+
+  cd "$srcdir/DDNet-$pkgver-linux_x86_64"
+
+  # binary
+  install -vDm755 "config_directory.sh" "$pkgdir/usr/bin/config_directory.sh"
+  install -vDm755 "config_retrieve" "$pkgdir/usr/bin/config_retrieve"
+  install -vDm755 "config_store" "$pkgdir/usr/bin/config_store"
+  install -vDm755 "DDNet" "$pkgdir/usr/bin/DDNet"
+  install -vDm755 "DDNet-Server" "$pkgdir/usr/bin/DDNet-Server"
+  install -vDm755 "demo_extract_chat" "$pkgdir/usr/bin/demo_extract_chat"
+  install -vDm755 "dilate" "$pkgdir/usr/bin/dilate"
+  install -vDm755 "map_convert_07" "$pkgdir/usr/bin/map_convert_07"
+  install -vDm755 "map_diff" "$pkgdir/usr/bin/map_diff"
+  install -vDm755 "map_extract" "$pkgdir/usr/bin/map_extract"
+
+  # library
+  install -vDm644 "discord_game_sdk.so" "$pkgdir/usr/lib/discord_game_sdk.so"
+
+  # data
+  mkdir -p "$pkgdir/usr/share/ddnet"
+  cp -r "data/" "$pkgdir/usr/share/ddnet/"
+
+  # config
+  install -vDm644 "storage.cfg" "$pkgdir/etc/ddnet/storage.cfg"
+
+  # license
+  install -vDm644 "license.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+}

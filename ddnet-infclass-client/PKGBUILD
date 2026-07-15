@@ -1,0 +1,37 @@
+pkgname=ddnet-infclass-client
+pkgver=0.1.8
+pkgrel=1
+pkgdesc="DDNet infclass client"
+arch=('x86_64')
+url="https://infclass.github.io/"
+license=('custom' 'CC-BY-SA-3.0' 'custom:SIL-OFL')
+source=("https://github.com/infclass/infclass-client/releases/download/v0.1.8/Infclass-0.1.8-linux_x86_64_ubuntu_20.04.tar.xz"
+        "ddnet-infclass-client.desktop")
+sha256sums=('15e4d6899c6597efa2e057a0ebb14135a68bef4ac4c547fddb9b98b8b2f37aa8'
+            'SKIP')
+
+package() {
+  cd "Infclass-${pkgver}-linux_x86_64"
+
+  # Install binary
+  install -vDm755 "Infclass" "${pkgdir}/usr/bin/infclass"
+
+  # Create directory and install data
+  mkdir -p "${pkgdir}/usr/share/${pkgname}"
+  cp -r data "${pkgdir}/usr/share/${pkgname}/"
+
+  # Install storage.cfg
+  install -vDm644 storage.cfg "${pkgdir}/etc/${pkgname}/storage.cfg"
+
+  # Install config_directory.sh helper script
+  install -vDm755 config_directory.sh "${pkgdir}/usr/share/${pkgname}/config_directory.sh"
+
+  # Install license
+  install -vDm644 license.txt "${pkgdir}/usr/share/licenses/${pkgname}/license.txt"
+
+  # Create symlink from /usr/bin to config script
+  ln -s "/usr/share/${pkgname}/config_directory.sh" "${pkgdir}/usr/bin/infclass-config"
+
+  # Install desktop entry
+  install -Dm644 "${srcdir}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+}

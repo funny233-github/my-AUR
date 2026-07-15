@@ -1,0 +1,16 @@
+# Build artifacts (common)
+pkg/
+src/
+*.pkg.tar.*
+*.pkg.tar.xz
+*.src.tar.gz
+*.log
+*.xz
+*.zst
+.PKGINFO
+
+# cubioms-viewer specific (git clone output)
+cubiomes-viewer/
+
+# Misc
+*~

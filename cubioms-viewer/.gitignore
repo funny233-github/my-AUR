@@ -1,0 +1,8 @@
+.PKGINFO
+pkg/
+src/
+cubiomes-viewer/
+*.pkg.tar.*
+*.pkg.tar.xz
+*.src.tar.gz
+*.log

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=DDNet
+Comment=An actively maintained version of Teeworlds with competitive focus
+Exec=DDNet
+Icon=ddnet
+Terminal=false
+Type=Application
+Categories=Game;ActionGame;
+Keywords=teeworlds;ddnet;game;multiplayer;
+StartupWMClass=DDNet
