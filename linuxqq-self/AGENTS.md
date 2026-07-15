@@ -7,15 +7,23 @@ when a new version of [Linux QQ](https://im.qq.com/linuxqq) is released.
 
 ## 1. Find the latest version
 
-1. Check the latest version from the upstream:
-   - Visit <https://im.qq.com/linuxqq> or check the [AUR package page](https://aur.archlinux.org/packages/linuxqq) for the current community version.
-   - Or check the Tencent QQ download page for Linux: <https://qqdownload.qq.com/qqfile/QQNT/Linux/>
-2. Compare it against the current `pkgver` in `PKGBUILD`.
-3. If the version has **not** changed, stop and tell the user: *"linuxqq is already at the latest version `<VERSION>`."*
-4. If the version **has** changed (i.e., a newer release exists), proceed.
+1. Use the AUR RPC API to check the community package version:
+   ```bash
+   curl -sSf "https://aur.archlinux.org/rpc/v5/info/linuxqq" | jq -r '.results[0].Version'
+   ```
+   Output looks like `5:3.2.31_51102-2` (epoch:version-rel).
+   The version part (between `:` and `-`) is `pkgver`, e.g. `3.2.31_51102`.
 
-> **Important**: If you cannot confirm the version, **stop** and ask the user.
-> Do **not** guess or fabricate a version number.
+2. Compare it against the current `pkgver` in `PKGBUILD`.
+
+3. If the version has **not** changed, stop and tell the user:
+   *"linuxqq is already at the latest version `<VERSION>`."* — do **not**
+   make any changes.
+
+4. If the version **has** changed, proceed.
+
+> **Important**: If the API call fails, **stop** and tell the user. Do **not**
+> guess or fabricate a version number.
 
 ---
 
@@ -24,16 +32,24 @@ when a new version of [Linux QQ](https://im.qq.com/linuxqq) is released.
 1. Read `PKGBUILD` and locate the line `pkgver=...`.
 2. Replace it with the new version string (e.g. `3.2.32_52000`).
 3. Reset `pkgrel` to `1`.
-4. Update the `_md5_prefix` — this is extracted from the download URL on the
-   Tencent QQ download page. You may need to inspect the page source or ask the
-   user for the correct value.
-5. Update the `source_*` URLs to match the new version and architecture.
-6. Update the `sha512sums` entries — set them to `'SKIP'` initially, then
-   update after downloading (see Step 4).
+4. Update `epoch` to match the community package's epoch (may stay the same).
+5. **Get the download URLs** by cloning the community AUR PKGBUILD:
+   ```bash
+   git clone --depth=1 "https://aur.archlinux.org/linuxqq.git" /tmp/linuxqq-upstream
+   ```
+   Then read `/tmp/linuxqq-upstream/PKGBUILD` and extract:
+   - `_md5_prefix` — copy the new value
+   - `source_*` URLs — copy all `source_x86_64`, `source_aarch64`, `source_loong64`
+   - `sha512sums` entries — copy all of them
+   Update these values in your PKGBUILD. The `.deb` URL pattern changes with
+   each release and the `_md5_prefix` cannot be derived from the version alone.
+6. Clean up: `rm -rf /tmp/linuxqq-upstream`
+7. The `source=("${pkgname}.sh")` line (the launcher script) stays unchanged.
+8. `conflicts=('linuxqq-nt-bwrap')` must remain as-is (hardcoded, not using `$pkgname`).
 
 ---
 
-## 3. Download the source
+## 3. Download and verify
 
 ```bash
 makepkg -o
@@ -43,32 +59,15 @@ This will download the `.deb` files for all architectures.
 
 ---
 
-## 4. Compute sha512sums
-
-After the source is downloaded, compute the actual sha512sums:
-
-```bash
-sha512sum linuxqq_<NEW_VERSION>_amd64.deb
-sha512sum linuxqq_<NEW_VERSION>_arm64.deb
-sha512sum linuxqq_<NEW_VERSION>_loongarch64.deb
-```
-
-Update the corresponding entries in `sha512sums`, `sha512sums_x86_64`,
-`sha512sums_aarch64`, `sha512sums_loong64`.
-
----
-
-## 5. Build and verify
+## 4. Build
 
 ```bash
 makepkg -si
 ```
 
-If the build succeeds, the update is complete.
-
 ---
 
-## 6. Update .SRCINFO (if present)
+## 5. Update .SRCINFO (if present)
 
 ```bash
 makepkg --printsrcinfo > .SRCINFO
@@ -80,7 +79,7 @@ makepkg --printsrcinfo > .SRCINFO
 
 | Situation | Action |
 |---|---|
-| Cannot confirm new version | Ask the user — check AUR community package or download page manually |
+| AUR API or git clone fails | Ask the user — the version/URLs may need to be fetched manually |
 | `makepkg -o` fails (download error, 404) | **Stop.** The URL pattern may have changed. Tell the user. |
 | `makepkg -si` fails | **Stop.** Show the user the full error output. |
 
@@ -92,6 +91,8 @@ and let them decide.
 ## Notes
 
 - **Never commit/push** unless the user explicitly asks.
-- The `_md5_prefix` in the download URL changes with each release and is
-  specific to the build. It must be extracted from the official download page.
-- `conflicts=('linuxqq-nt-bwrap')` must remain unchanged.
+- The `_md5_prefix` in the download URL is unique per release and must be
+  extracted from the community AUR PKGBUILD (via git clone) — it cannot be
+  guessed.
+- All `sha512sums` are copied directly from the community PKGBUILD.
+- `url="https://im.qq.com/linuxqq"` — hardcoded, does NOT use `$pkgname`.
