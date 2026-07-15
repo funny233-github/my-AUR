@@ -2,3 +2,7 @@
 !PKGBUILD
 !.SRCINFO
 !.gitignore
+!clean.sh
+!AGENTS.md
+!update-available.sh
+!*.nvchecker.toml
