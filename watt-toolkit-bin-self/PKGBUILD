@@ -18,7 +18,7 @@ source=(
     'environment_check.sh')
 source_x86_64=("Steam++_${pkgver}_x86_64.tar.gz::https://github.com/BeyondDimension/SteamTools/releases/download/${_tag}/Steam++_v${_tag}_linux_x64.tgz")
 sha256sums=('50cfc2d50271e97d818004f1777826cedd666a16014bd08b288cdd35e3d47fb1'
-            '2dbf57bb3cfbc45f3307f2db63ae86907364044b81137f2592363cd120da4f3e'
+            '5b2be7c0beab33faa2478bd39f7eac64802964bd78571be0fe4017f8bf00bfa9'
             '822897eafe72886f06e2d6b0911d323a5716da8f2acbeca630f36382f38b64ec'
             'da96b337ef8f79f170fb5976dffee4c52ecf5bc842e3dac9d8479a198887b8b1')
 sha256sums_x86_64=('fb99bcd4fa6ac649228700f908819fe19a16cc29a866ad43d2873e504a41783f')
