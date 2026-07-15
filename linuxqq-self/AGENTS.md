@@ -44,8 +44,13 @@ when a new version of [Linux QQ](https://im.qq.com/linuxqq) is released.
    Update these values in your PKGBUILD. The `.deb` URL pattern changes with
    each release and the `_md5_prefix` cannot be derived from the version alone.
 6. Clean up: `rm -rf /tmp/linuxqq-upstream`
-7. The `source=("${pkgname}.sh")` line (the launcher script) stays unchanged.
-8. `conflicts=('linuxqq-nt-bwrap')` must remain as-is (hardcoded, not using `$pkgname`).
+7. The `_src_prefix` line must use the hardcoded `linuxqq_` prefix (NOT `linuxqq-self_`):
+   ```bash
+   _src_prefix="linuxqq_${pkgver/_/-}"
+   ```
+   The upstream deb filename uses `linuxqq_`, not `linuxqq-self_`.
+8. `source=("linuxqq.sh")` must stay as-is (the launcher script filename).
+9. `conflicts=('linuxqq-nt-bwrap')` must remain as-is (hardcoded, not using `$pkgname`).
 
 ---
 

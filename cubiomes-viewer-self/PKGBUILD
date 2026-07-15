@@ -1,4 +1,5 @@
 # Maintainer: Your Name <your@email.com>
+_upstream=cubiomes-viewer
 pkgname=cubiomes-viewer-self
 pkgver=4.1.2
 pkgrel=1
@@ -14,21 +15,21 @@ sha256sums=('SKIP'
             'SKIP')
 
 prepare() {
-  cd "$srcdir/$pkgname"
+  cd "$srcdir/$_upstream"
   git submodule update --init --recursive
 }
 
 build() {
-  cd "$srcdir/$pkgname"
+  cd "$srcdir/$_upstream"
   qmake cubiomes-viewer.pro
   make
 }
 
 package() {
-  cd "$srcdir/$pkgname"
+  cd "$srcdir/$_upstream"
 
-  # Install executable
-  install -Dm755 "$pkgname" "$pkgdir/usr/bin/$pkgname"
+  # Install executable (renamed to pkgname)
+  install -Dm755 "$_upstream" "$pkgdir/usr/bin/$pkgname"
 
   # Install license
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
