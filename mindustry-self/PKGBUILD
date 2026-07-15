@@ -3,8 +3,8 @@
 
 : ${_java_ver:=17}
 
-_pkgname="mindustry-self"
-pkgbase="$_pkgname"
+_pkgname="mindustry"
+pkgbase="mindustry-self"
 pkgver="159.3"
 pkgrel=1
 pkgdesc="A sandbox tower defense game"
