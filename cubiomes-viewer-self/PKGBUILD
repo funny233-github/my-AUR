@@ -10,8 +10,10 @@ license=('GPL3')
 depends=('qt5-base' 'qt5-svg')
 makedepends=('git')
 source=("git+$url.git#tag=$pkgver"
-        "$pkgname.desktop")
+        "$pkgname.desktop"
+        "icon.svg")
 sha256sums=('SKIP'
+            'SKIP'
             'SKIP')
 
 prepare() {
@@ -41,5 +43,5 @@ package() {
   install -Dm644 "$srcdir/$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
 
   # Install icon
-  install -Dm644 rc/icons/logo.png "$pkgdir/usr/share/pixmaps/$pkgname.png"
+  install -Dm644 "$srcdir/icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/cubiomes-viewer.svg"
 }
