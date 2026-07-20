@@ -21,7 +21,6 @@ When asked to update an AUR package:
 |---|---|---|
 | `cubiomes-viewer-self/` | cubiomes-viewer-self | [cubiomes-viewer-self/AGENTS.md](cubiomes-viewer-self/AGENTS.md) |
 | `ddnet-self/` | ddnet-self | [ddnet-self/AGENTS.md](ddnet-self/AGENTS.md) |
-| `ddnet-infclass-client-self/` | ddnet-infclass-client-self | [ddnet-infclass-client-self/AGENTS.md](ddnet-infclass-client-self/AGENTS.md) |
 | `linuxqq-self/` | linuxqq-self | [linuxqq-self/AGENTS.md](linuxqq-self/AGENTS.md) |
 | `mindustry-self/` | mindustry-self | [mindustry-self/AGENTS.md](mindustry-self/AGENTS.md) |
 | `watt-toolkit-bin-self/` | watt-toolkit-bin-self | [watt-toolkit-bin-self/AGENTS.md](watt-toolkit-bin-self/AGENTS.md) |
