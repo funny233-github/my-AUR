@@ -1,12 +1,13 @@
-pkgname=ddnet-binary-self
+pkgname=ddnet-self
 pkgver=19.9
 pkgrel=1
 pkgdesc="DDNet game from official website"
 arch=('x86_64')
 url="https://ddnet.org"
+options=(!strip !debug)
 license=('CC-BY-SA-3.0' 'Zlib' 'OFL-1.1' 'Bitstream-Vera' 'LicenseRef-Arev')
-source=("https://ddnet.org/downloads/DDNet-$pkgver-linux_x86_64.tar.xz" "DDNet.desktop")
-sha256sums=('0dbee3217a231e787a555493203f0953d3f6783551743dd97e6e81936f4a280c' 'SKIP')
+source=("https://ddnet.org/downloads/DDNet-$pkgver-linux_x86_64.tar.xz" "DDNet.desktop" "tw.ddnet.ddnet.png")
+sha256sums=('0dbee3217a231e787a555493203f0953d3f6783551743dd97e6e81936f4a280c' 'SKIP' 'SKIP')
 
 build() {
   cd "$srcdir/DDNet-$pkgver-linux_x86_64"
@@ -14,6 +15,7 @@ build() {
 
 package() {
   install -vDm644 "DDNet.desktop" "$pkgdir/usr/share/applications/DDNet.desktop"
+  install -vDm644 "tw.ddnet.ddnet.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/tw.ddnet.ddnet.png"
 
   cd "$srcdir/DDNet-$pkgver-linux_x86_64"
 

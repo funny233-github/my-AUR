@@ -20,7 +20,7 @@ When asked to update an AUR package:
 | Directory | Package | AGENTS.md |
 |---|---|---|
 | `cubiomes-viewer-self/` | cubiomes-viewer-self | [cubiomes-viewer-self/AGENTS.md](cubiomes-viewer-self/AGENTS.md) |
-| `ddnet-binary-self/` | ddnet-binary-self | [ddnet-binary-self/AGENTS.md](ddnet-binary-self/AGENTS.md) |
+| `ddnet-self/` | ddnet-self | [ddnet-self/AGENTS.md](ddnet-self/AGENTS.md) |
 | `ddnet-infclass-client-self/` | ddnet-infclass-client-self | [ddnet-infclass-client-self/AGENTS.md](ddnet-infclass-client-self/AGENTS.md) |
 | `linuxqq-self/` | linuxqq-self | [linuxqq-self/AGENTS.md](linuxqq-self/AGENTS.md) |
 | `mindustry-self/` | mindustry-self | [mindustry-self/AGENTS.md](mindustry-self/AGENTS.md) |

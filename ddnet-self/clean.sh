@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-echo "==> Cleaning ddnet-binary build artifacts..."
+echo "==> Cleaning ddnet-self build artifacts..."
 
 rm -rfv pkg/ src/
 rm -fv *.xz *.zst

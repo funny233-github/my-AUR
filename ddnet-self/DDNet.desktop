@@ -2,7 +2,7 @@
 Name=DDNet
 Comment=An actively maintained version of Teeworlds with competitive focus
 Exec=DDNet
-Icon=ddnet
+Icon=tw.ddnet.ddnet
 Terminal=false
 Type=Application
 Categories=Game;ActionGame;

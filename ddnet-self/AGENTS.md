@@ -1,6 +1,6 @@
-# Agent Workflow: Updating ddnet-binary
+# Agent Workflow: Updating ddnet-self
 
-This file instructs an AI coding agent on how to update the `ddnet-binary` AUR
+This file instructs an AI coding agent on how to update the `ddnet-self` AUR
 package when a new version of DDNet is released.
 
 ---
@@ -75,14 +75,14 @@ package when a new version of DDNet is released.
 2. If `makepkg` **succeeds** (exit code 0):
    - Clean up the built package file:
      ```bash
-     rm -f "ddnet-binary-<NEW_PKGVER>-1-x86_64.pkg.tar.zst"
+     rm -f "ddnet-self-<NEW_PKGVER>-1-x86_64.pkg.tar.zst"
      ```
    - Commit the changes:
      ```bash
      git add PKGBUILD
      git commit -m "update to <NEW_PKGVER>"
      ```
-   - Tell the user: *"Updated ddnet-binary to <NEW_PKGVER> and committed."*
+   - Tell the user: *"Updated ddnet-self to <NEW_PKGVER> and committed."*
 3. If `makepkg` **fails**:
    - **Stop immediately**. Do **not** commit anything.
    - Show the user the full error output from `makepkg`.
