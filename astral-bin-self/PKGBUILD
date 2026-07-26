@@ -1,0 +1,33 @@
+# Maintainer: funny_233
+
+pkgname=astral-bin-self
+pkgver=2.9.9
+pkgrel=1
+pkgdesc="P2P VPN networking tool based on EasyTier, with Flutter GUI"
+arch=('x86_64' 'aarch64')
+url="https://astral.fan"
+license=('LicenseRef-PolyForm-Noncommercial-1.0.0')
+depends=('polkit' 'libayatana-appindicator')
+options=('!strip')
+
+source_x86_64=("https://github.com/ldoubil/astral/releases/download/v${pkgver}/astral-linux-x64.tar.gz")
+source_aarch64=("https://github.com/ldoubil/astral/releases/download/v${pkgver}/astral-linux-arm64.tar.gz")
+source=("https://github.com/ldoubil/astral/raw/refs/heads/main/assets/icon.ico"
+        "${pkgname%-self}.desktop")
+sha256sums_x86_64=('SKIP')
+sha256sums_aarch64=('SKIP')
+sha256sums=('SKIP'
+            'SKIP')
+
+package() {
+    local _appname="${pkgname%-self}"
+
+    mkdir -p "${pkgdir}/opt/${_appname}"
+    bsdtar -xf "${srcdir}/astral-linux-"*.tar.gz -C "${pkgdir}/opt/${_appname}"
+
+    mkdir -p "${pkgdir}/usr/bin"
+    ln -s "/opt/${_appname}/astral" "${pkgdir}/usr/bin/astral"
+
+    install -Dm644 "${srcdir}/icon.ico" "${pkgdir}/usr/share/pixmaps/Astral.png"
+    install -Dm644 "${srcdir}/${_appname}.desktop" "${pkgdir}/usr/share/applications/${_appname}.desktop"
+}
