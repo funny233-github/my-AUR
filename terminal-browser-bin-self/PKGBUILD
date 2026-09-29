@@ -1,7 +1,7 @@
 # Maintainer: lugas7
 _pkgname=terminal-browser
 pkgname=terminal-browser-bin-self
-pkgver=0.8.1
+pkgver=0.11.1
 pkgrel=1
 pkgdesc="A browser that runs directly inside your existing terminal"
 arch=('x86_64' 'aarch64')
@@ -15,10 +15,10 @@ source=("LICENSE-${pkgname}::https://raw.githubusercontent.com/zenbu-labs/termin
 sha256sums=('SKIP')
 
 source_x86_64=("https://terminal-browser.sh/install/dl/stable/v${pkgver}/terminal-browser-linux-x64.tar.gz")
-sha256sums_x86_64=('35e78089d1089dc4f492bbd7d2a03d57ed5543b4394b4fddf3be57c75b77747e')
+sha256sums_x86_64=('b08327655aa3190260cf34807294be7c7c6685aa2639a393055b7c649eeb3a4a')
 
 source_aarch64=("https://terminal-browser.sh/install/dl/stable/v${pkgver}/terminal-browser-linux-arm64.tar.gz")
-sha256sums_aarch64=('7f90d97003eedd6ac62e61c82290ffd280f2f0e8f266911f70ab0fbac8a102fe')
+sha256sums_aarch64=('ef34c68333c4352e5107d5bd6c5cf7fe840a05c9a48a37084b9fc65fc986385c')
 
 noextract=("terminal-browser-linux-x64.tar.gz" "terminal-browser-linux-arm64.tar.gz")
 
