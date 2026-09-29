@@ -1,5 +1,5 @@
 pkgname=ddnet-self
-pkgver=20.0
+pkgver=20.1
 pkgrel=1
 pkgdesc="DDNet game from official website"
 arch=('x86_64')
@@ -7,7 +7,7 @@ url="https://ddnet.org"
 options=(!strip !debug)
 license=('CC-BY-SA-3.0' 'Zlib' 'OFL-1.1' 'Bitstream-Vera' 'LicenseRef-Arev')
 source=("https://ddnet.org/downloads/DDNet-$pkgver-linux_x86_64.tar.xz" "DDNet.desktop" "tw.ddnet.ddnet.png")
-sha256sums=('9d7863aab9135543fbb517c7f01cb20cfac22dc992e04541a1c599037a8453d3' 'SKIP' 'SKIP')
+sha256sums=('cfe2c44d40e751a6b72d77e5437add5e579f95aee386f493a3ee5aed20f66c98' 'SKIP' 'SKIP')
 
 build() {
   cd "$srcdir/DDNet-$pkgver-linux_x86_64"
