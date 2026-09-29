@@ -5,6 +5,21 @@ package when a new version of DDNet is released.
 
 ---
 
+> ## ⚠️ Environment & network — read before starting
+>
+> **You run in an Alpine Linux VM, not Arch Linux.** `makepkg` is **not
+> installed**, so:
+> - Fetch the tarball with `curl`/`axel` and compute `sha256sum` by hand — do
+>   **not** use `makepkg -o` to download.
+> - Edit `PKGBUILD` manually.
+> - Ask the user to run `makepkg -f` on their Arch machine to verify; **never
+>   run `makepkg` yourself.**
+>
+> **ddnet.org may be unreachable** — the user is in mainland China. If a
+> download times out, 502s, or 403s, do **not** guess a version or fabricate a
+> checksum. Report the exact error and ask the user to download the file /
+> provide the checksum (hand the task back to them).
+
 ## 1. Find the latest version
 
 1. Open <https://ddnet.org/downloads/> in a browser/web tool.
@@ -65,31 +80,22 @@ package when a new version of DDNet is released.
 
 ---
 
-## 5. Verify with makepkg
+## 5. Verify (user runs makepkg)
 
-1. Run:
+You cannot run `makepkg` in this Alpine VM. Instead:
+
+1. Confirm the `PKGBUILD` is correct: new `pkgver`, updated `sha256sums`
+   (first entry), with `'SKIP'` for `DDNet.desktop` / the png untouched.
+2. Ask the user to run `makepkg -f` on their Arch machine.
+3. If it **succeeds**, have the user remove the built
+   `ddnet-self-<NEW_PKGVER>-1-x86_64.pkg.tar.zst`, then commit (only after the
+   user confirms the build succeeded):
    ```bash
-   makepkg -f
+   git add PKGBUILD
+   git commit -m "update to <NEW_PKGVER>"
    ```
-   - `-f` forces rebuild even if the tarball already exists.
-2. If `makepkg` **succeeds** (exit code 0):
-   - Clean up the built package file:
-     ```bash
-     rm -f "ddnet-self-<NEW_PKGVER>-1-x86_64.pkg.tar.zst"
-     ```
-   - Commit the changes:
-     ```bash
-     git add PKGBUILD
-     git commit -m "update to <NEW_PKGVER>"
-     ```
-   - Tell the user: *"Updated ddnet-self to <NEW_PKGVER> and committed."*
-3. If `makepkg` **fails**:
-   - **Stop immediately**. Do **not** commit anything.
-   - Show the user the full error output from `makepkg`.
-   - Tell the user exactly what went wrong.
-   - Ask the user: *"The build failed. What would you like to do? (e.g., fix
-     the PKGBUILD, try a different approach, investigate further)"*
-   - Wait for the user's instructions before proceeding.
+4. If it **fails**, stop, show the user the full error, and ask how to proceed.
+   Do **not** commit anything on failure.
 
 ---
 

@@ -3,6 +3,25 @@
 This repository contains multiple AUR packages. Each subdirectory has its own
 `AGENTS.md` file with detailed instructions for updating that specific package.
 
+## Environment & network — read before starting
+
+**You run in an Alpine Linux VM, not Arch Linux.** `makepkg` is **not
+installed**, and a real build needs Arch-specific tooling, so:
+
+- Fetch sources with `curl`/`axel` and compute checksums by hand
+  (`sha256sum`/`sha512sum`). Do **not** rely on `makepkg -o` to download.
+- Edit `PKGBUILD` and `.SRCINFO` manually (regenerate `.SRCINFO` by hand, or ask
+  the user to run `makepkg --printsrcinfo` on their Arch machine).
+- Ask the user to run `makepkg` / `makepkg -si` on their Arch machine to verify
+  the build. **Never run `makepkg` yourself.**
+
+**GitHub (and sometimes the AUR) may be unreachable** — the user is in mainland
+China. If a download, clone, or API call times out, returns 502/403, or otherwise
+fails: do **not** guess a version or fabricate a checksum. Report the exact error
+and ask the user to download the file / provide the checksum (hand the task back
+to them). `https://codeload.github.com/...` serves byte-identical content and may
+work as a fallback, but if it also fails, delegate to the user.
+
 ## Workflow
 
 When asked to update an AUR package:

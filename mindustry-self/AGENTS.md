@@ -9,6 +9,24 @@ This package builds from source and produces two subpackages:
 
 ---
 
+> ## ⚠️ Environment & network — read before starting
+>
+> **You run in an Alpine Linux VM, not Arch Linux.** `makepkg` is **not
+> installed**, so:
+> - Fetch sources with `curl`/`axel` and compute checksums by hand
+>   (`sha256sum`/`sha512sum`). Do **not** use `makepkg -o` to download.
+> - Edit `PKGBUILD` and `.SRCINFO` manually.
+> - Ask the user to run `makepkg` / `makepkg -si` on their Arch machine to
+>   verify. **Never run `makepkg` yourself.**
+>
+> **GitHub (and sometimes the AUR) may be unreachable** — the user is in
+> mainland China. If a download, clone, or API call times out, 502s, or 403s:
+> do **not** guess a version or fabricate a checksum. Report the exact error and
+> ask the user to download the file / provide the checksum (hand the task back
+> to them). `https://codeload.github.com/...` serves byte-identical content and
+> may work as a fallback, but if it also fails, delegate to the user.
+
+
 ## 1. Find the latest version
 
 1. Fetch the latest release from the GitHub API:
@@ -43,12 +61,16 @@ This package builds from source and produces two subpackages:
 
 ## 3. Download the source
 
+You cannot run `makepkg` in this Alpine VM. Download both tarballs directly:
+
 ```bash
-makepkg -o
+curl -fL "https://github.com/Anuken/Mindustry/archive/v${pkgver}.tar.gz" -o "industry-${pkgver}.tar.gz"
+curl -fL "https://github.com/Anuken/Arc/archive/refs/tags/v${pkgver}.tar.gz" -o "industry-arc-${pkgver}.tar.gz"
 ```
 
-This will download the Mindustry source tarball and the Arc library tarball
-from GitHub.
+If `github.com` is unreachable (see the network note), use the
+`https://codeload.github.com/...` fallback; if that also fails, ask the user to
+download them and send the checksums.
 
 ---
 
@@ -67,9 +89,8 @@ Update the two `sha256sums` entries in `PKGBUILD` with the real hashes.
 
 ## 5. Build and verify
 
-```bash
-makepkg -si
-```
+Ask the user to run `makepkg -si` on their Arch machine to verify. **Never run `makepkg` yourself.**
+
 
 This will build both `mindustry-self` and `mindustry-server-self`.
 
@@ -77,9 +98,8 @@ This will build both `mindustry-self` and `mindustry-server-self`.
 
 ## 6. Update .SRCINFO (if present)
 
-```bash
-makepkg --printsrcinfo > .SRCINFO
-```
+Regenerate it by hand, or ask the user to run
+`makepkg --printsrcinfo > .SRCINFO` on their Arch machine.
 
 ---
 

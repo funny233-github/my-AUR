@@ -6,6 +6,24 @@ is released.
 
 ---
 
+> ## ⚠️ Environment & network — read before starting
+>
+> **You run in an Alpine Linux VM, not Arch Linux.** `makepkg` is **not
+> installed**, so:
+> - Fetch sources with `curl`/`axel` and compute checksums by hand
+>   (`sha256sum`/`sha512sum`). Do **not** use `makepkg -o` to download.
+> - Edit `PKGBUILD` and `.SRCINFO` manually.
+> - Ask the user to run `makepkg` / `makepkg -si` on their Arch machine to
+>   verify. **Never run `makepkg` yourself.**
+>
+> **GitHub (and sometimes the AUR) may be unreachable** — the user is in
+> mainland China. If a download, clone, or API call times out, 502s, or 403s:
+> do **not** guess a version or fabricate a checksum. Report the exact error and
+> ask the user to download the file / provide the checksum (hand the task back
+> to them). `https://codeload.github.com/...` serves byte-identical content and
+> may work as a fallback, but if it also fails, delegate to the user.
+
+
 ## 1. Find the latest version
 
 The `PKGBUILD` downloads pre-built binaries from
@@ -27,11 +45,16 @@ Check the release feed for the latest tag and compare it against `pkgver` in
 
 ## 3. Download and compute checksums
 
+You cannot run `makepkg` in this Alpine VM. Download both tarballs directly and compute their checksums by hand:
+
 ```bash
-makepkg -o
-sha256sum src/terminal-browser-linux-x64.tar.gz
-sha256sum src/terminal-browser-linux-arm64.tar.gz
+curl -fL "https://terminal-browser.sh/install/dl/stable/v${pkgver}/terminal-browser-linux-x64.tar.gz" -o "terminal-browser-linux-x64.tar.gz"
+curl -fL "https://terminal-browser.sh/install/dl/stable/v${pkgver}/terminal-browser-linux-arm64.tar.gz" -o "terminal-browser-linux-arm64.tar.gz"
+sha256sum terminal-browser-linux-x64.tar.gz
+sha256sum terminal-browser-linux-arm64.tar.gz
 ```
+
+If `terminal-browser.sh` is unreachable, ask the user to download them and send the checksums.
 
 Update `sha256sums_x86_64` and (if on aarch64) `sha256sums_aarch64` in PKGBUILD.
 
@@ -39,9 +62,8 @@ Update `sha256sums_x86_64` and (if on aarch64) `sha256sums_aarch64` in PKGBUILD.
 
 ## 4. Build
 
-```bash
-makepkg -s
-```
+Ask the user to run `makepkg -s` on their Arch machine to verify. **Never run
+`makepkg` yourself.**
 
 The binary is installed to `/opt/terminal-browser/bin/terminal-browser` and
 exposed via `/usr/bin/terminal-browser`.

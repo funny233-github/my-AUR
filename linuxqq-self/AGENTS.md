@@ -5,6 +5,24 @@ when a new version of [Linux QQ](https://im.qq.com/linuxqq) is released.
 
 ---
 
+> ## ⚠️ Environment & network — read before starting
+>
+> **You run in an Alpine Linux VM, not Arch Linux.** `makepkg` is **not
+> installed**, so:
+> - Fetch sources with `curl`/`axel` and compute checksums by hand
+>   (`sha256sum`/`sha512sum`). Do **not** use `makepkg -o` to download.
+> - Edit `PKGBUILD` and `.SRCINFO` manually.
+> - Ask the user to run `makepkg` / `makepkg -si` on their Arch machine to
+>   verify. **Never run `makepkg` yourself.**
+>
+> **GitHub (and sometimes the AUR) may be unreachable** — the user is in
+> mainland China. If a download, clone, or API call times out, 502s, or 403s:
+> do **not** guess a version or fabricate a checksum. Report the exact error and
+> ask the user to download the file / provide the checksum (hand the task back
+> to them). `https://codeload.github.com/...` serves byte-identical content and
+> may work as a fallback, but if it also fails, delegate to the user.
+
+
 ## 1. Find the latest version
 
 1. Use the AUR RPC API to check the community package version:
@@ -56,27 +74,30 @@ when a new version of [Linux QQ](https://im.qq.com/linuxqq) is released.
 
 ## 3. Download and verify
 
+You cannot run `makepkg` in this Alpine VM. Download the `.deb` files directly
+with `curl` (the URLs are already in `source_x86_64` / `source_aarch64` /
+`source_loong64`):
+
 ```bash
-makepkg -o
+curl -fL "<source_url>" -o "<filename>.deb"   # repeat for each architecture
 ```
 
-This will download the `.deb` files for all architectures.
+If `qqdl.gtimg.cn` is unreachable (see the network note above), ask the user to
+download the `.deb` files and send the checksums.
 
 ---
 
 ## 4. Build
 
-```bash
-makepkg -si
-```
+Ask the user to run `makepkg -si` on their Arch machine to verify. **Never run
+`makepkg` yourself.**
 
 ---
 
 ## 5. Update .SRCINFO (if present)
 
-```bash
-makepkg --printsrcinfo > .SRCINFO
-```
+Regenerate it by hand, or ask the user to run
+`makepkg --printsrcinfo > .SRCINFO` on their Arch machine.
 
 ---
 

@@ -6,6 +6,24 @@ released.
 
 ---
 
+> ## ⚠️ Environment & network — read before starting
+>
+> **You run in an Alpine Linux VM, not Arch Linux.** `makepkg` is **not
+> installed**, so:
+> - Fetch sources with `curl`/`axel` and compute checksums by hand
+>   (`sha256sum`/`sha512sum`). Do **not** use `makepkg -o` to download.
+> - Edit `PKGBUILD` and `.SRCINFO` manually.
+> - Ask the user to run `makepkg` / `makepkg -si` on their Arch machine to
+>   verify. **Never run `makepkg` yourself.**
+>
+> **GitHub (and sometimes the AUR) may be unreachable** — the user is in
+> mainland China. If a download, clone, or API call times out, 502s, or 403s:
+> do **not** guess a version or fabricate a checksum. Report the exact error and
+> ask the user to download the file / provide the checksum (hand the task back
+> to them). `https://codeload.github.com/...` serves byte-identical content and
+> may work as a fallback, but if it also fails, delegate to the user.
+
+
 ## 1. Find the latest version
 
 The official download URL always points to the latest version (no version in
@@ -51,17 +69,15 @@ any changes.
 
 ## 3. Build and verify
 
-```bash
-makepkg -si
-```
+Ask the user to run `makepkg -si` on their Arch machine to verify. **Never run
+`makepkg` yourself.**
 
 ---
 
 ## 4. Update .SRCINFO (if present)
 
-```bash
-makepkg --printsrcinfo > .SRCINFO
-```
+Regenerate it by hand, or ask the user to run
+`makepkg --printsrcinfo > .SRCINFO` on their Arch machine.
 
 ---
 
