@@ -1,16 +1,16 @@
 pkgbase = mindustry-self
 	pkgdesc = A sandbox tower defense game
-	pkgver = 160.5
+	pkgver = 160.7
 	pkgrel = 1
 	url = https://github.com/Anuken/Mindustry
 	arch = any
 	license = GPL-3.0-only
 	makedepends = java-environment=17
 	makedepends = libicns
-	source = mindustry-160.5.tar.gz::https://github.com/Anuken/Mindustry/archive/v160.5.tar.gz
-	source = mindustry-arc-160.5.tar.gz::https://github.com/Anuken/Arc/archive/refs/tags/v160.5.tar.gz
-	sha256sums = bab4d829613d0ee64283fc51aecd12ec49ac48943c0c32cbc0027487d7aadf48
-	sha256sums = 9228bda3cfdec72ccd300e852e52d0bda5f37270478d3f7b386d643e868c074e
+	source = mindustry-160.7.tar.gz::https://github.com/Anuken/Mindustry/archive/v160.7.tar.gz
+	source = mindustry-arc-160.7.tar.gz::https://github.com/Anuken/Arc/archive/refs/tags/v160.7.tar.gz
+	sha256sums = f86e7af47073a63e338ba53f8aaed1c2431b1e324f6f32c3da2c6e9bb8c03a9e
+	sha256sums = 483888f05cc8bb2790d14029dd77854ee73a5d1636b773f299df8d7754207a07
 
 pkgname = mindustry-self
 	depends = java-runtime>=17
