@@ -4,8 +4,12 @@ set -euo pipefail
 cd "$(dirname "$0")"
 current=$(grep -oP '^pkgver=\K.*' PKGBUILD)
 
-latest=$(curl -sSf "https://api.github.com/repos/zenbu-labs/terminal-browser/releases/latest" \
-         | jq -r '.tag_name' 2>/dev/null || true)
+# Only accept plain vX.Y.Z tags (the browser line). The same repo also publishes
+# unrelated series such as `pixel-v*` and `electron-v*`, which `releases/latest`
+# happily returns and would be mistaken for a newer browser release.
+latest=$(curl -sSf "https://api.github.com/repos/zenbu-labs/terminal-browser/releases?per_page=50" \
+         | jq -r '[.[] | select(.prerelease == false) | .tag_name
+                  | select(test("^v[0-9]+\\.[0-9]+\\.[0-9]+$"))][0] // empty' 2>/dev/null || true)
 latest=${latest#v}
 
 if [ -z "$latest" ] || [ "$current" = "$latest" ]; then
