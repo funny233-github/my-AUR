@@ -1,10 +1,10 @@
 #Maintainer: rmbgame<rmb@rmbgame.net>
 #Maintainer: AigioL<https://github.com/AigioL>
-_tag=3.1.0
+_tag=3.2.0
 pkgname=watt-toolkit-bin-self
 pkgdesc=一个开源跨平台的多功能Steam工具箱。
 pkgver=${_tag//-/.}
-pkgrel=2
+pkgrel=1
 arch=('x86_64')
 url=https://steampp.net/
 license=('GPL-3.0-only')
@@ -21,7 +21,7 @@ sha256sums=('50cfc2d50271e97d818004f1777826cedd666a16014bd08b288cdd35e3d47fb1'
             '5b2be7c0beab33faa2478bd39f7eac64802964bd78571be0fe4017f8bf00bfa9'
             '822897eafe72886f06e2d6b0911d323a5716da8f2acbeca630f36382f38b64ec'
             'da96b337ef8f79f170fb5976dffee4c52ecf5bc842e3dac9d8479a198887b8b1')
-sha256sums_x86_64=('fb99bcd4fa6ac649228700f908819fe19a16cc29a866ad43d2873e504a41783f')
+sha256sums_x86_64=('56725757e5e0b30164959f28f38966a7d622ace17f10b679e0e16d71a4dadbfc')
 
 case "${CARCH}" in
     x86_64)
